@@ -1,0 +1,5 @@
+= form_for [@user, @post] do |f|
+  = f.text_field :title
+  = f.text_field :text
+  = f.submit
+= link_to '一覧画面に戻る', root_path

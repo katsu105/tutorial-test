@@ -1,0 +1,8 @@
+.wrapper
+  - @posts.each do |post|
+    .wrapper__box
+      名前:
+      = post.user.name
+      %p= post.title
+      %p= post.text
+      .wrapper__box コメントを見る
