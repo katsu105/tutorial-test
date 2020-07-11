@@ -1,0 +1,6 @@
+%div
+  - @posts.each do |post|
+    %div
+      = post.user.name
+      = post.title
+      = post.text
