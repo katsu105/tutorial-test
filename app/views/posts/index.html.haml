@@ -1,16 +1,26 @@
 .wrapper
-  = form_tag search_posts_path, method: "get" do
-    = label_tag :keyword
-    = text_field_tag :keyword
-    = submit_tag
+  .wrapper__header
+    .wrapper__header--search
+      = form_tag search_posts_path, method: "get" do
+        = text_field_tag :keyword, '', class: 'input-box', placeholder: 'タイトル、テキスト、コメントから検索できます'
+        = submit_tag '検索する', class: 'link-btn'
+    .wrapper__header--user
+      = render partial: "shared/user"
 
-  - @posts.each do |post|
-    .wrapper__box
-      タグ:
-      - post.tags.each do |tag|
-        = tag.tag
-      名前:
-      = post.user.name
-      %p= post.title
-      %p= post.text
-      = link_to('コメントを見る', post_path(post), class: "")
+  .main
+    - @posts.each do |post|
+      .main__inner
+        .main__box
+          - if post.tags.present?
+            .main__inner--tag
+              タグ(#{post.tags.length}):
+              - post.tags.each do |tag|
+                = tag.tag
+          .main__inner--name
+            名前:
+            = post.user.name
+        .main__title
+          %p タイトル:  #{post.title}
+        .main__text
+          %p= post.text
+      = link_to("コメントを見る(#{post.comments.length})", post_path(post), class: 'link') if user_signed_in?
