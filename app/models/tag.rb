@@ -1,4 +1,10 @@
 class Tag < ApplicationRecord
-  has_many :posts, through: :post_tags
   has_many :post_tags
+  has_many :posts, through: :post_tags
+
+  def self.multiple_tag_save(tags, post)
+    tags.each do |tag|
+      post.tags.create(tag: tag)
+    end
+  end
 end

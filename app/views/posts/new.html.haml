@@ -1,4 +1,9 @@
 = form_for @post do |f|
+  タグ(複数入力可 例:IT キャンプ TV):
+  = f.fields_for :tags, @post.tags.build do |t|
+    = t.label :tag
+    = t.text_field :tag
+
   = f.text_field :title
   = f.text_field :text
   = f.submit
