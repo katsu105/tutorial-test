@@ -21,6 +21,14 @@ class PostsController < ApplicationController
     @comments = @post.comments.includes(:user)
   end
 
+  def search
+    keyword = search_params
+    @posts = []
+    @posts += Post.where('title LIKE(?) OR text LIKE(?)', "%#{keyword}%", "%#{keyword}%")
+    comments = Comment.where('text LIKE(?)', "%#{keyword}%")
+    @posts += comments.map{|comment| comment.post }
+  end
+
   private
 
   def post_params
@@ -33,5 +41,9 @@ class PostsController < ApplicationController
 
   def tag_params
     params.require(:post)["tags_attributes"]["0"]["tag"].split
+  end
+
+  def search_params
+    params.permit(:keyword)["keyword"]
   end
 end
