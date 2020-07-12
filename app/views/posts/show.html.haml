@@ -2,6 +2,9 @@
 
 .wrapper
   .wrapper__box
+    タグ:
+    - @post.tags.each do |tag|
+      = tag.tag
     名前:
     = @post.user.name
     %p= @post.title
