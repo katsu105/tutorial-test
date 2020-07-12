@@ -5,4 +5,4 @@
       = post.user.name
       %p= post.title
       %p= post.text
-      .wrapper__box コメントを見る
+      = link_to('コメントを見る', post_path(post), class: "")
