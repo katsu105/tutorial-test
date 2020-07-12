@@ -4,7 +4,6 @@ class PostsController < ApplicationController
   end
 
   def new
-    @user = current_user
     @post = Post.new
   end
 
@@ -12,6 +11,12 @@ class PostsController < ApplicationController
     post = Post.new(post_params)
     post.save
     redirect_to root_path
+  end
+
+  def show
+    @post = Post.find(params[:id])
+    @comment = Comment.new
+    @comments = @post.comments.includes(:user)
   end
 
   private

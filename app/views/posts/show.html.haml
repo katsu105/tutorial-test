@@ -1,0 +1,17 @@
+= link_to 'Topページに戻る', root_path
+
+.wrapper
+  .wrapper__box
+    名前:
+    = @post.user.name
+    %p= @post.title
+    %p= @post.text
+    = form_for [@post, @comment] do |f|
+      = f.text_field :text
+      = f.hidden_field :post_id, value: @post.id
+      = f.hidden_field :user_id, value: current_user.id
+      = f.submit
+    %div
+      - @comments.each do |comment|
+        %p= comment.user.name
+        %p= comment.text
