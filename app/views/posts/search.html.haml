@@ -1,9 +1,4 @@
 .wrapper
-  = form_tag search_posts_path, method: "get" do
-    = label_tag :keyword
-    = text_field_tag :keyword
-    = submit_tag
-
   - @posts.each do |post|
     .wrapper__box
       タグ:

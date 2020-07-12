@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :users
   resources :posts, only: [:new, :create, :show] do
     resources :comments, only: [:new, :create]
+    collection do
+      get 'search'
+    end
   end
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
