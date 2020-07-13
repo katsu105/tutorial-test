@@ -1,3 +1,94 @@
 .wrapper__box {
   margin-bottom: 50px;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  &__header {
+    margin: 30px 0 30px 0;
+    display: flex;
+    justify-content: flex-end;
+    &--user {
+      margin: 0 30px 0 30px;
+    }
+    &--current-user {
+      margin-left: 100px;
+    }
+  }
+  .main {
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 200px;
+    &__inner {
+      background-color: #DDFFFF;
+
+      padding: 0 30px 20px 30px;
+      &--tag {
+        margin-right: 10px;
+      }
+    }
+    &__title {
+      font-weight: bold;
+      font-size: 20px;
+      width: 750px;
+      margin-bottom: 10px;
+      word-wrap: break-word;
+    }
+    &__text {
+      margin-bottom: 10px;
+      width: 750px;
+      word-wrap: break-word;
+    }
+    &__box {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.link {
+  margin-bottom: 50px;
+  color: #0033cc;
+}
+
+.input-box-post {
+  border: 0;
+  padding: 15px 0 15px 0;
+  font-family: Arial, sans-serif;
+  color: #aaa;
+  border: solid 1px #ccc;
+  width: 600px;
+  height: 10px;
+}
+
+.input-box-text {
+  border: 0;
+  padding: 15px;
+  font-family: Arial, sans-serif;
+  color: #aaa;
+  border: solid 1px #ccc;
+  width: 600px;
+  height: 200px;
+}
+
+.new-post {
+  margin: 30px 0 0 300px;
+  &__tag {
+    margin-bottom: 30px;
+  }
+  &__title {
+    margin-bottom: 30px;
+  }
+}
+
+.commnet {
+  margin-top:20px;
+  &__name {
+    margin-top:20px;
+  }
+  &__text {
+    margin-top:20px;
+  }
+}

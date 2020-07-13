@@ -1,10 +1,20 @@
-= form_for @post do |f|
-  タグ(複数入力可 例:IT キャンプ TV):
-  = f.fields_for :tags, @post.tags.build do |t|
-    = t.label :tag
-    = t.text_field :tag
+= link_to '一覧画面に戻る', root_path, class: 'link'
+.new-post
+  新規投稿
+  = form_for @post do |f|
+    .new-post__tag
+      タグ(空白を入れることで複数入力ができます):
+      %br
+      = f.fields_for :tags, @post.tags.build do |t|
+        = t.text_field :tag, class: 'input-box-post', placeholder: '例: 海 山 川'
+    .new-post__title
+      = f.label :title, 'タイトル'
+      %br
+      = f.text_field :title, class: 'input-box-post', placeholder: '今日の出来事'
+    .new-post__text
+      = f.label :title, '本文'
+      %br
+      = f.text_field :text, class: 'input-box-text'
+      %br
+      = f.submit 'コメント投稿', class: 'link-btn'
 
-  = f.text_field :title
-  = f.text_field :text
-  = f.submit
-= link_to '一覧画面に戻る', root_path

@@ -1,0 +1,24 @@
+.link-btn {
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+.link-btn:hover {
+  background: #67c5ff;
+  color: white;
+}
+
+.input-box {
+  border: 0;
+  padding: 15px 0 15px 0;
+  font-family: Arial, sans-serif;
+  color: #aaa;
+  border: solid 1px #ccc;
+  width: 400px;
+  height: 10px;
+}
