@@ -8,11 +8,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
-    post.save
-
-    Tag.multiple_tag_save(tag_params, post)
-    redirect_to root_path
+    @post = Post.new(post_params)
+    if @post.save && @post.tags.present?
+      Tag.multiple_tag_save(tag_params, @post)
+      redirect_to root_path
+    else
+      @post.errors.add(:base, 'タグが空欄です') if @post.tags.blank?
+      render 'new'
+    end
   end
 
   def show
@@ -23,11 +26,17 @@ class PostsController < ApplicationController
 
   def search
     keyword = search_params
-    @posts = []
-    @posts += Post.where('text LIKE(?)', "%#{keyword}%")
-    @posts += Post.where('text LIKE(?)',  "%#{keyword}%")
-    comments = Comment.where('text LIKE(?)', "%#{keyword}%")
-    @posts += comments.map{|comment| comment.post }
+    if keyword.present?
+      @posts = []
+      @posts += Post.where('text LIKE(?)', "%#{keyword}%")
+      @posts += Post.where('text LIKE(?)',  "%#{keyword}%")
+      comments = Comment.where('text LIKE(?)', "%#{keyword}%")
+      @posts += comments.map{|comment| comment.post }
+    else
+      @posts = Post.all
+      @erros = '検索欄が空白です'
+      render 'index'
+    end
   end
 
   private

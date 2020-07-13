@@ -1,8 +1,11 @@
 = link_to 'Topページに戻る', root_path, class: 'link-btn'
-
 .wrapper
+  - if @comment.errors.any?
+    .alert
+      %ul
+        - @comment.errors.full_messages.each do |message|
+          %li= message
   .main
-
     .main__inner
       .main__box
         - if @post.tags.present?
