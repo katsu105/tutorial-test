@@ -9,11 +9,10 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    if @post.save && @post.tags.present?
+    if @post.save
       Tag.multiple_tag_save(tag_params, @post)
       redirect_to root_path
     else
-      @post.errors.add(:base, 'タグが空欄です') if @post.tags.blank?
       render 'new'
     end
   end
