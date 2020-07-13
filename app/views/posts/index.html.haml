@@ -1,4 +1,8 @@
 .wrapper
+  - if @erros.present?
+    .alert
+      %ul
+        %li= @erros
   .wrapper__header
     .wrapper__header--search
       = form_tag search_posts_path, method: "get" do
