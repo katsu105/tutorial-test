@@ -28,7 +28,7 @@ class PostsController < ApplicationController
     keyword = search_params
     if keyword.present?
       @posts = []
-      @posts += Post.where('text LIKE(?)', "%#{keyword}%")
+      @posts += Post.where('title LIKE(?)', "%#{keyword}%")
       @posts += Post.where('text LIKE(?)',  "%#{keyword}%")
       comments = Comment.where('text LIKE(?)', "%#{keyword}%")
       @posts += comments.map{|comment| comment.post }
