@@ -1,11 +1,19 @@
 .wrapper
-  - @posts.each do |post|
-    .wrapper__box
-      タグ:
-      - post.tags.each do |tag|
-        = tag.tag
-      名前:
-      = post.user.name
-      %p= post.title
-      %p= post.text
-      = link_to('コメントを見る', post_path(post), class: "")
+  .main
+    = link_to "戻る", :back, class: 'link'
+    - @posts.each do |post|
+      .main__inner
+        .main__box
+          - if post.tags.present?
+            .main__inner--tag
+              タグ(#{post.tags.length}):
+              - post.tags.each do |tag|
+                = tag.tag
+          .main__inner--name
+            名前:
+            = post.user.name
+        .main__title
+          %p タイトル:  #{post.title}
+        .main__text
+          %p= post.text
+      = link_to("コメントを見る(#{post.comments.length})", post_path(post), class: 'link') if user_signed_in?
