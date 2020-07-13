@@ -4,6 +4,9 @@
       = form_tag search_posts_path, method: "get" do
         = text_field_tag :keyword, '', class: 'input-box', placeholder: 'タイトル、テキスト、コメントから検索できます'
         = submit_tag '検索する', class: 'link-btn'
+    - if user_signed_in?
+      .wrapper__header--current-user
+        = "ユーザー名:#{current_user.name}"
     .wrapper__header--user
       = render partial: "shared/user"
 

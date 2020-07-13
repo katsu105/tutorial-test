@@ -23,7 +23,7 @@
       = f.hidden_field :user_id, value: current_user.id
       = f.submit 'コメント投稿', class: 'link-btn'
     .commnet
-      %p コメント一覧
+      %p コメント一覧(#{@comments.length})
       - @comments.each do |comment|
         .commnet__name
           %p= comment.user.name
